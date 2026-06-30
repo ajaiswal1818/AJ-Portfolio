@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Jaiswal · Senior Backend Engineer</title>
+<meta name="description" content="Senior software engineer with 5 years building backend systems, from SD-WAN networking at VMware to AI-agentic infrastructure at Knowl. Relocating to Barcelona.">
+<meta property="og:title" content="Abhishek Jaiswal · Senior Backend Engineer">
+<meta property="og:description" content="Backend systems from network edge to AI agents. Relocating from Bengaluru to Barcelona for senior and staff backend roles.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0e1a'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='14' font-weight='700' fill='%23e8a23d' text-anchor='middle'%3EAJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo" aria-label="Abhishek Jaiswal, home">
+      <span class="logo-mark">AJ</span>
+      <span class="logo-text">Abhishek Jaiswal</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#notes" class="nav-link">Notes</a></li>
+        <li><a href="#stack" class="nav-link">Stack</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="resume.pdf" download="Abhishek_Jaiswal_Resume.pdf" class="btn btn-ghost btn-sm header-resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
+        Resume
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero" aria-label="Introduction">
+    <div class="container">
+
+      <div class="status-bar reveal">
+        <span class="status-segment">
+          <span class="status-dot" aria-hidden="true"></span>
+          AVAILABLE FOR SENIOR / STAFF BACKEND ROLES
+        </span>
+        <span class="status-sep" aria-hidden="true">·</span>
+        <span class="status-segment status-segment-muted">5Y IN PRODUCTION</span>
+        <span class="status-sep" aria-hidden="true">·</span>
+        <span class="status-segment status-segment-muted">BENGALURU &rarr; BARCELONA</span>
+      </div>
+
+      <h1 class="hero-headline reveal">
+        Code that <span class="hl-cyan">200,000 network devices</span> depend on.
+        AI agents that handle <span class="hl-amber">a million requests a day</span>.
+      </h1>
+
+      <p class="hero-subhead reveal">
+        Five years building backend systems, from kernel-level networking at VMware to AI-agentic
+        infrastructure at a fast-moving startup. Currently relocating from Bengaluru to Barcelona
+        for senior and staff backend roles.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="resume.pdf" download="Abhishek_Jaiswal_Resume.pdf" class="btn btn-primary">
+          Download resume
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
+        </a>
+        <a href="#projects" class="btn btn-ghost">
+          View work
+        </a>
+      </div>
+
+      <div class="metric-grid reveal" id="metric-grid">
+
+        <div class="metric-card">
+          <svg class="metric-spark" viewBox="0 0 64 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2,19 L11,15 L20,17 L29,10 L38,12 L47,6 L56,8 L62,3" />
+          </svg>
+          <div class="metric-value"><span class="stat-value" data-target="1">0</span><span class="stat-suffix">M+</span></div>
+          <div class="metric-label">API requests / day</div>
+          <div class="metric-sub">Knowl &middot; hybrid AWS + GKE</div>
+        </div>
+
+        <div class="metric-card">
+          <svg class="metric-spark" viewBox="0 0 64 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2,20 L11,17 L20,18 L29,12 L38,14 L47,7 L56,9 L62,4" />
+          </svg>
+          <div class="metric-value"><span class="stat-value" data-target="200">0</span><span class="stat-suffix">K+</span></div>
+          <div class="metric-label">Edge devices served</div>
+          <div class="metric-sub">VMware &middot; VeloCloud SD-WAN</div>
+        </div>
+
+        <div class="metric-card">
+          <svg class="metric-spark" viewBox="0 0 64 24" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2,17 L11,18 L20,13 L29,15 L38,9 L47,11 L56,5 L62,6" />
+          </svg>
+          <div class="metric-value"><span class="stat-prefix">+</span><span class="stat-value" data-target="45">0</span><span class="stat-suffix">%</span></div>
+          <div class="metric-label">AI accuracy lift</div>
+          <div class="metric-sub">Language detection agent</div>
+        </div>
+
+        <div class="metric-card metric-card-progress">
+          <div class="metric-value"><span class="stat-value" data-target="90">0</span><span class="stat-suffix">%</span></div>
+          <div class="metric-label">Test coverage</div>
+          <div class="metric-sub">Up from 5% &middot; legacy C codebase</div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" data-progress-from="5" data-progress-to="90"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">01 &middot; ABOUT</div>
+
+      <div class="about-grid">
+
+        <div class="readme-panel reveal">
+          <div class="readme-tab">
+            <span class="readme-dot readme-dot-red" aria-hidden="true"></span>
+            <span class="readme-dot readme-dot-amber" aria-hidden="true"></span>
+            <span class="readme-dot readme-dot-green" aria-hidden="true"></span>
+            <span class="readme-filename">about.md</span>
+          </div>
+          <div class="readme-body">
+            <h2 id="about-heading" class="visually-hidden">About Abhishek</h2>
+            <p>
+              I'm a backend engineer who likes problems where the constraints are real:
+              limited memory, strict latency budgets, traffic that won't wait for you to scale
+              up. Day to day, that means owning technical decisions, defining API contracts, and
+              mentoring the engineers around me, as much as it means writing code.
+            </p>
+            <p>
+              Most recently, I was a founding engineer at Knowl, where I built the Python and
+              FastAPI backbone for an AI-native product handling over a million requests a day,
+              including an autonomous agentic system that improved language detection accuracy
+              by 45%.
+            </p>
+            <p>
+              Before that, I spent four years at VMware on the VeloCloud SD-WAN platform, writing
+              production C and C++ for systems running on 200,000+ edge devices: threat
+              detection, IPv6 prefix delegation, and a testing framework that took a legacy C
+              codebase from 5% to 90% coverage.
+            </p>
+            <p>
+              I studied Computer Science at IIT Guwahati, and still keep my competitive
+              programming chops sharp. Outside of work, I run local LLMs on a Mac Mini and write
+              about what I find.
+            </p>
+          </div>
+        </div>
+
+        <div class="meta-panel reveal">
+          <dl class="meta-list">
+            <div class="meta-row">
+              <dt>LOCATION</dt>
+              <dd>Bengaluru, India &rarr; Barcelona, Spain</dd>
+            </div>
+            <div class="meta-row">
+              <dt>VISA</dt>
+              <dd>HQP (company sponsorship needed) / </dd>
+              <dd>Digital Nomad (self-sponsored, no company action required)</dd>
+            </div>
+            <div class="meta-row">
+              <dt>LANGUAGES</dt>
+              <dd>English (C2) &middot; Spanish (A1, learning)</dd>
+            </div>
+            <div class="meta-row">
+              <dt>EDUCATION</dt>
+              <dd>B.Tech, Computer Science &middot; IIT Guwahati</dd>
+            </div>
+            <div class="meta-row">
+              <dt>COMPETITIVE PROGRAMMING</dt>
+              <dd>
+                <a href="https://codeforces.com/profile/jaiswal_abhi" target="_blank" rel="noopener noreferrer">Codeforces</a> Expert &middot;
+                <a href="https://www.codechef.com/users/abhi_18101999" target="_blank" rel="noopener noreferrer">CodeChef</a> 4-Star &middot;
+                <a href="https://leetcode.com/u/ajaiswal9043/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="section section-alt" aria-labelledby="experience-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">02 &middot; EXPERIENCE</div>
+      <h2 id="experience-heading" class="section-heading reveal">Where I've shipped</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-rail" aria-hidden="true">
+            <span class="timeline-dot"></span>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Founding Engineer</h3>
+                <div class="timeline-company">Knowl &middot; Bengaluru, India</div>
+              </div>
+              <div class="timeline-date">Nov 2025 &ndash; Jan 2026</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Designed Python/FastAPI backend services handling 1M+ API requests/day on a hybrid AWS EC2 and GKE architecture.</li>
+              <li>Built an autonomous AI agentic system for language detection using LLM reasoning and multi-strategy fallback, improving accuracy by 45% through prompt engineering.</li>
+              <li>Implemented Redis-based rate limiting and throttling, keeping high-volume APIs stable under P95 load.</li>
+              <li>Built scalable REST APIs with Pydantic validation across a reactive microservice architecture.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-rail" aria-hidden="true">
+            <span class="timeline-dot"></span>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Member of Technical Staff 2</h3>
+                <div class="timeline-company">VMware &middot; Arista (VeloCloud SD-WAN), Bengaluru, India</div>
+              </div>
+              <div class="timeline-date">Jul 2021 &ndash; Oct 2025</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Built a network interface tracking system giving real-time visibility into 200,000+ edge devices, from kernel-level data extraction to the user-facing dashboard.</li>
+              <li>Delivered Advanced Threat Protection (IDS/IPS, threat intelligence, URL filtering) that mitigated 10,000+ malicious connection attempts a month.</li>
+              <li>Designed and implemented IPv6 DHCP Prefix Delegation for dynamic prefix allocation across large SD-WAN deployments with zero-NAT global addressing.</li>
+              <li>Led the introduction of a unit testing framework for legacy C code, scaling coverage from 5% to 90% and unlocking full CI automation.</li>
+              <li>Built a packet processing latency visualization platform that sped up performance debugging.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section" aria-labelledby="projects-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">03 &middot; PROJECTS</div>
+      <h2 id="projects-heading" class="section-heading reveal">Things I build outside of work</h2>
+
+      <div class="project-grid">
+
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <h3 class="project-title">pytest-tenantguard</h3>
+            <span class="status-pill status-pill-building">BUILDING</span>
+          </div>
+          <p class="project-desc">
+            A pytest plugin and AST linter that catches cross-tenant data leaks in multi-tenant
+            SaaS codebases before they ship. MIT-licensed core, with a paid compliance dashboard
+            for teams that need audit trails.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">pytest</span>
+            <span class="tag">AST</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <h3 class="project-title">MigrationGuard</h3>
+            <span class="status-pill status-pill-building">BUILDING</span>
+          </div>
+          <p class="project-desc">
+            A CLI tool that catches backward-incompatible database migrations before they break a
+            zero-downtime deploy, by tracing migration diffs back to the application code that
+            actually depends on them.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">CLI</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <h3 class="project-title">Interview Helper</h3>
+            <span class="status-pill status-pill-active">ACTIVE</span>
+          </div>
+          <p class="project-desc">
+            A local RAG application that stores and queries interview experiences with semantic
+            search and metadata filtering, running entirely on local infrastructure end to end:
+            ingestion, indexing, retrieval, and LLM-powered answers.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">ChromaDB</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-top">
+            <h3 class="project-title">Librarian</h3>
+            <span class="status-pill status-pill-active">ACTIVE</span>
+          </div>
+          <p class="project-desc">
+            A multi-book conversational AI that ingests PDFs, builds a searchable knowledge base,
+            and answers questions with citations, using hybrid retrieval across vector search,
+            TF-IDF, and cosine similarity.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Hybrid Search</span>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="project-footnote reveal">
+        More on <a href="https://github.com/ajaiswal1818" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FIELD NOTES ============ -->
+  <section id="notes" class="section section-alt" aria-labelledby="notes-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">04 &middot; FIELD NOTES</div>
+      <h2 id="notes-heading" class="section-heading reveal">Notes from building with local AI</h2>
+
+      <div class="notes-grid">
+
+        <article class="note-card reveal">
+          <div class="note-tag">LOCAL AI &middot; SYSTEMS</div>
+          <h3 class="note-title">The real bottleneck in local AI isn't model size. It's memory.</h3>
+          <p class="note-body">
+            Running larger coding models on a 16GB Mac Mini, I noticed generation slowing down and
+            the model losing track of earlier context as a project grew. The cause wasn't the
+            model, it was the KV cache eating into available memory as context filled up. A
+            smaller model with more headroom for context can outperform a bigger one on real
+            projects, and I think the next real unlock for local AI is better memory
+            architecture, not bigger weights.
+          </p>
+          <a class="note-link" href="https://www.linkedin.com/posts/abhijaiswal18_ai-localai-llm-share-7475772170476879873-HkCK/" target="_blank" rel="noopener noreferrer">
+            Read the full post on LinkedIn
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+        <article class="note-card reveal">
+          <div class="note-tag">BENCHMARK &middot; APPLE SILICON</div>
+          <h3 class="note-title">Benchmarking Qwen3.5 on a Mac Mini against my Claude subscription</h3>
+          <p class="note-body">
+            Same coding prompt, run across 4B and 9B Qwen3.5 models with and without Apple's MLX
+            backend. Runtime optimization turned out to matter almost as much as model size.
+          </p>
+          <div class="bench-compare" aria-label="Generation speed comparison for the 4B model, with and without MLX">
+            <div class="bench-row">
+              <div class="bench-row-label">No MLX</div>
+              <div class="bench-bar-track">
+                <div class="bench-bar" data-bench-width="47"></div>
+              </div>
+              <div class="bench-row-value">13.13 tok/s</div>
+            </div>
+            <div class="bench-row">
+              <div class="bench-row-label">MLX</div>
+              <div class="bench-bar-track">
+                <div class="bench-bar bench-bar-accent" data-bench-width="100"></div>
+              </div>
+              <div class="bench-row-value">27.71 tok/s</div>
+            </div>
+          </div>
+          <p class="note-body note-body-tight">
+            ~2.1x faster generation on the 4B model, with total inference time dropping from
+            4m39s to 1m43s. 4B models now feel genuinely usable for real engineering work.
+          </p>
+          <a class="note-link" href="https://www.linkedin.com/posts/abhijaiswal18_ai-llm-ollama-ugcPost-7466018590115262464-5kxm/" target="_blank" rel="noopener noreferrer">
+            Read the full post on LinkedIn
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-sm"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STACK & CREDENTIALS ============ -->
+  <section id="stack" class="section" aria-labelledby="stack-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">05 &middot; STACK</div>
+      <h2 id="stack-heading" class="section-heading reveal">What I build with</h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Languages</div>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Cloud &amp; Infra</div>
+          <div class="tag-row">
+            <span class="tag">AWS (EC2, S3, SQS)</span><span class="tag">GKE</span><span class="tag">Terraform</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">KEDA</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">AI &amp; LLM</div>
+          <div class="tag-row">
+            <span class="tag">AI Agent Dev</span><span class="tag">RAG</span><span class="tag">Prompt Engineering</span><span class="tag">LangChain</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Frameworks</div>
+          <div class="tag-row">
+            <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Spring</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Data</div>
+          <div class="tag-row">
+            <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span><span class="tag">ChromaDB</span><span class="tag">Elasticsearch</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Practices</div>
+          <div class="tag-row">
+            <span class="tag">CI/CD</span><span class="tag">Agile</span><span class="tag">Unit Testing</span><span class="tag">Microservices</span><span class="tag">TCP/IP</span><span class="tag">Network Security</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cert-row reveal">
+        <div class="cert-card">
+          <div class="cert-name">Retrieval Augmented Generation (RAG)</div>
+          <div class="cert-date">April 2026 &middot; Present</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Claude Code: An Agentic Coding Assistant</div>
+          <div class="cert-date">May 2026</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">AWS Storage</div>
+          <div class="cert-date">June 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-eyebrow reveal">06 &middot; CONTACT</div>
+      <h2 id="contact-heading" class="section-heading reveal">
+        Open to senior and staff backend roles in Barcelona and across Europe.
+      </h2>
+      <p class="contact-sub reveal">
+        I'm relocating from Bengaluru and ready to start the visa sponsorship process. If you're
+        hiring backend or AI-systems engineers, I'd love to talk.
+      </p>
+
+      <div class="contact-links reveal">
+        <a class="contact-link" href="mailto:ajaiswal9043@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <span>
+            <span class="contact-link-label">Email</span>
+            <span class="contact-link-value">ajaiswal9043@gmail.com</span>
+          </span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/abhijaiswal18/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-3a2 2 0 0 1 4 0v3"/><path d="M12 11v5"/></svg>
+          <span>
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-value">in/abhijaiswal18</span>
+          </span>
+        </a>
+        <a class="contact-link" href="https://github.com/ajaiswal1818" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C7.5 3.8 6.4 4.1 6.4 4.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 10.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>
+          <span>
+            <span class="contact-link-label">GitHub</span>
+            <span class="contact-link-value">ajaiswal1818</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-copy">&copy; 2026 Abhishek Jaiswal. Bengaluru &rarr; Barcelona.</div>
+    <div class="footer-links">
+      <a href="mailto:ajaiswal9043@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/abhijaiswal18/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/ajaiswal1818" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
