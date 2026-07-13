@@ -1,179 +1,194 @@
-/* ============================================
-   ABHISHEK JAISWAL : PORTFOLIO
-   Interactions: nav, reveal-on-scroll, count-up
-   ============================================ */
+/* ============================================================
+   Abhishek Jaiswal · Portfolio · Interactions
+   ============================================================ */
 
 (function () {
-  'use strict';
+  "use strict";
 
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Mobile nav toggle ---------- */
-  var navToggle = document.getElementById('nav-toggle');
-  var mainNav = document.getElementById('main-nav');
+  /* ---------- Header: glass on scroll ---------- */
+
+  var header = document.getElementById("site-header");
+
+  function onScroll() {
+    header.classList.toggle("scrolled", window.scrollY > 12);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile nav ---------- */
+
+  var navToggle = document.getElementById("nav-toggle");
+  var mainNav = document.getElementById("main-nav");
 
   if (navToggle && mainNav) {
-    navToggle.addEventListener('click', function () {
-      var isOpen = mainNav.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navToggle.addEventListener("click", function () {
+      var open = mainNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(open));
     });
 
-    mainNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mainNav.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
+    mainNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
       });
     });
+
+    document.addEventListener("click", function (e) {
+      if (!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+        mainNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 
-  /* ---------- Reveal on scroll ---------- */
-  var revealEls = document.querySelectorAll('.reveal');
+  /* ---------- Staggered reveal on scroll ---------- */
 
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("is-visible"); });
   } else {
-    var revealObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry, i) {
-          if (entry.isIntersecting) {
-            var el = entry.target;
-            var delay = Math.min(i * 60, 240);
-            setTimeout(function () { el.classList.add('is-visible'); }, delay);
-            revealObserver.unobserve(el);
-          }
+    // Stagger siblings that enter in the same frame
+    var pending = [];
+    var flushScheduled = false;
+
+    function flush() {
+      pending
+        .sort(function (a, b) {
+          return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+        })
+        .forEach(function (el, i) {
+          el.style.setProperty("--reveal-delay", (i * 70) + "ms");
+          el.classList.add("is-visible");
         });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    revealEls.forEach(function (el) { revealObserver.observe(el); });
+      pending = [];
+      flushScheduled = false;
+    }
+
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          pending.push(entry.target);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+      if (pending.length && !flushScheduled) {
+        flushScheduled = true;
+        requestAnimationFrame(flush);
+      }
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    reveals.forEach(function (el) { revealObserver.observe(el); });
   }
 
-  /* ---------- Count-up stats ---------- */
-  function animateCountUp(el) {
-    var target = parseFloat(el.getAttribute('data-target'), 10);
-    if (isNaN(target)) return;
+  /* ---------- Animated counters + progress bars ---------- */
 
+  function animateValue(el, target, duration) {
     if (prefersReducedMotion) {
-      el.textContent = target;
+      el.textContent = String(target);
       return;
     }
-
-    var duration = 1300;
     var start = null;
-
-    function easeOutExpo(t) {
-      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+      el.textContent = String(Math.round(eased * target));
+      if (p < 1) requestAnimationFrame(step);
     }
-
-    function step(timestamp) {
-      if (start === null) start = timestamp;
-      var progress = Math.min((timestamp - start) / duration, 1);
-      var eased = easeOutExpo(progress);
-      var current = Math.round(eased * target);
-      el.textContent = current;
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        el.textContent = target;
-      }
-    }
-    window.requestAnimationFrame(step);
+    requestAnimationFrame(step);
   }
 
-  var metricGrid = document.getElementById('metric-grid');
+  var metricGrid = document.getElementById("metric-grid");
+
   if (metricGrid) {
-    var statEls = metricGrid.querySelectorAll('.stat-value');
-    var progressFill = metricGrid.querySelector('.progress-fill');
-
-    if (!('IntersectionObserver' in window)) {
-      statEls.forEach(animateCountUp);
-      if (progressFill) {
-        progressFill.style.width = progressFill.getAttribute('data-progress-to') + '%';
-      }
-    } else {
-      var metricObserver = new IntersectionObserver(
-        function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              statEls.forEach(animateCountUp);
-              if (progressFill) {
-                var to = progressFill.getAttribute('data-progress-to');
-                requestAnimationFrame(function () {
-                  progressFill.style.width = to + '%';
-                });
-              }
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.4 }
-      );
-      metricObserver.observe(metricGrid);
-    }
-  }
-
-  /* ---------- Benchmark bar fill ---------- */
-  var benchBars = document.querySelectorAll('.bench-bar');
-  if (benchBars.length) {
-    if (!('IntersectionObserver' in window) || prefersReducedMotion) {
-      benchBars.forEach(function (bar) {
-        bar.style.width = bar.getAttribute('data-bench-width') + '%';
+    var runMetrics = function () {
+      metricGrid.querySelectorAll(".stat-value").forEach(function (el) {
+        animateValue(el, parseInt(el.getAttribute("data-target"), 10) || 0, 1400);
       });
+      metricGrid.querySelectorAll(".progress-fill").forEach(function (el) {
+        var to = parseInt(el.getAttribute("data-progress-to"), 10) || 0;
+        requestAnimationFrame(function () { el.style.width = to + "%"; });
+      });
+    };
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      runMetrics();
     } else {
-      var benchObserver = new IntersectionObserver(
-        function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              var bar = entry.target;
-              requestAnimationFrame(function () {
-                bar.style.width = bar.getAttribute('data-bench-width') + '%';
-              });
-              obs.unobserve(bar);
-            }
-          });
-        },
-        { threshold: 0.4 }
-      );
-      benchBars.forEach(function (bar) { benchObserver.observe(bar); });
+      var metricsObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          runMetrics();
+          metricsObserver.disconnect();
+        }
+      }, { threshold: 0.25 });
+      metricsObserver.observe(metricGrid);
     }
   }
 
-  /* ---------- Active nav link on scroll (scrollspy) ---------- */
-  var sections = document.querySelectorAll('main section[id]');
-  var navLinks = document.querySelectorAll('.nav-link');
+  /* ---------- Benchmark bars ---------- */
 
-  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-    var spyObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          var id = entry.target.getAttribute('id');
-          var link = document.querySelector('.nav-link[href="#' + id + '"]');
-          if (!link) return;
-          if (entry.isIntersecting) {
-            navLinks.forEach(function (l) { l.style.color = ''; });
-            link.style.color = 'var(--text-primary)';
-          }
-        });
-      },
-      { rootMargin: '-45% 0px -50% 0px' }
-    );
-    sections.forEach(function (s) { spyObserver.observe(s); });
+  var benchBars = document.querySelectorAll(".bench-bar");
+
+  if (benchBars.length) {
+    var runBench = function () {
+      benchBars.forEach(function (bar) {
+        var w = parseInt(bar.getAttribute("data-bench-width"), 10) || 0;
+        requestAnimationFrame(function () { bar.style.width = w + "%"; });
+      });
+    };
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      runBench();
+    } else {
+      var benchObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          runBench();
+          benchObserver.disconnect();
+        }
+      }, { threshold: 0.3 });
+      benchObserver.observe(benchBars[0].closest(".bench-compare"));
+    }
   }
 
-  /* ---------- Header shadow on scroll ---------- */
-  var header = document.getElementById('site-header');
-  if (header) {
-    var lastState = false;
-    window.addEventListener(
-      'scroll',
-      function () {
-        var scrolled = window.scrollY > 8;
-        if (scrolled !== lastState) {
-          header.style.boxShadow = scrolled ? '0 8px 24px -16px rgba(0,0,0,0.6)' : 'none';
-          lastState = scrolled;
+  /* ---------- Card spotlight (follows cursor) ---------- */
+
+  if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".spot").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - rect.left) + "px");
+        card.style.setProperty("--my", (e.clientY - rect.top) + "px");
+      });
+    });
+  }
+
+  /* ---------- Active nav link on scroll ---------- */
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
+  var sections = navLinks
+    .map(function (link) {
+      var id = link.getAttribute("href").slice(1);
+      return document.getElementById(id);
+    })
+    .filter(Boolean);
+
+  if (sections.length && "IntersectionObserver" in window) {
+    var activeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (link) {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === "#" + entry.target.id
+            );
+          });
         }
-      },
-      { passive: true }
-    );
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+
+    sections.forEach(function (s) { activeObserver.observe(s); });
   }
 })();
