@@ -1,0 +1,185 @@
+%% Abhishek Jaiswal  ATS-Friendly Single-Page CV (European Standard)
+%% Compile with: pdflatex resume.tex
+\documentclass[10pt,a4paper]{article}
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=1.0cm, bottom=0.9cm, left=1.2cm, right=1.2cm]{geometry}
+\usepackage{paracol}          % two-column layout
+\usepackage{titlesec}         % section heading control
+\usepackage{enumitem}         % list customisation
+\usepackage{hyperref}         % clickable links
+\usepackage{fontawesome5}     % icons (optional  remove if not installed)
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+% ── Colors ────────────────────────────────────────────────────────────────────
+\definecolor{accentblue}{HTML}{1A5276}
+\definecolor{ACCENTBLUE}{HTML}{1A5276}
+\definecolor{lightgray}{HTML}{F5F5F5}
+\definecolor{LIGHTGRAY}{HTML}{F5F5F5}
+\definecolor{darkgray}{HTML}{444444}
+\definecolor{DARKGRAY}{HTML}{444444}
+% ── Hyperlink styling ─────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  urlcolor=darkgray,
+  linkcolor=lightgray
+}
+% ── Section heading style ─────────────────────────────────────────────────────
+\titleformat{\section}
+  {\normalfont\bfseries\color{accentblue}\small\uppercase}
+  {}{0em}{}
+  [\vspace{-2pt}\color{accentblue}\titlerule\vspace{4pt}]
+\titlespacing{\section}{0pt}{6pt}{3pt}
+% ── List style ────────────────────────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1em,
+  itemsep=0.5pt,
+  parsep=0pt,
+  topsep=2pt,
+  label=\textbullet
+}
+% ── Custom commands ───────────────────────────────────────────────────────────
+% \entry{Title}{Company}{Date}{Location}
+\newcommand{\entry}[4]{%
+  \noindent{\textbf{#1}}\hfill{\footnotesize\color{darkgray}#3}\\
+  {\small\textit{#2}}\hfill{\footnotesize\color{darkgray}#4}
+  \vspace{2pt}
+}
+% \projentry{Title}{Date}
+\newcommand{\projentry}[3]{%
+  \noindent{\textbf{#1}}\hfill{\footnotesize\color{darkgray}#2} {#3}
+}
+\newcommand{\emptydiamond}[0]{\space$\diamond$\space}
+% ── No page numbers ───────────────────────────────────────────────────────────
+\pagestyle{empty}
+% ═════════════════════════════════════════════════════════════════════════════
+\begin{document}
+% ═════════════════════════════════════════════════════════════════════════════
+% ── HEADER ───────────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{accentblue} Abhishek Jaiswal}\\[4pt]
+  {\small
+    \faMapMarker*\ Barcelona, Spain (from Nov 2026)
+    \quad|\quad
+    \faEnvelope\ \href{mailto:ajaiswal9043@gmail.com}{ajaiswal9043@gmail.com}
+    \quad|\quad
+    \faPhone\ +91-9958045472
+    \quad|\quad
+    \faLinkedin\ \href{https://linkedin.com/in/abhijaiswal18}{in/abhijaiswal18}
+  }
+\end{center}
+\vspace{4pt}
+% ── SUMMARY ──────────────────────────────────────────────────────────────────
+\section{Profile}
+{Senior Software Engineer with 5 years of experience building backend services, distributed systems, and core networking features, now focused on AI/agentic systems and RAG. Adept at leading initiatives, mentoring juniors, and shipping production-grade software. Eligible for Spain's Highly Qualified Professional permit.}
+\vspace{6pt}
+% ── TWO-COLUMN BODY ───────────────────────────────────────────────────────────
+% Left column: 34%, Right column: 66%
+\columnratio{0.4}
+\setlength{\columnsep}{0.8cm}
+\begin{paracol}{2}
+%% ═══════════════════════════
+%%  LEFT COLUMN
+%% ═══════════════════════════
+% ── EDUCATION ────────────────────────────────────────────────────────────────
+\section{Education}
+\textbf{B.Tech \textbullet\ CSE}\\
+{\small Indian Institute of Technology\\Guwahati}\\
+{\footnotesize\color{darkgray} 2017 – 2021}
+\vspace{6pt}
+% ── SKILLS ───────────────────────────────────────────────────────────────────
+\section{Skills}
+\textbf{Languages}\\
+{\small \emptydiamond Python \emptydiamond TypeScript \emptydiamond C \emptydiamond C++ \emptydiamond Java}
+\vspace{4pt}
+\textbf{Cloud}\\
+{\small \emptydiamond AWS (EC2, S3, SQS) \emptydiamond GKE \emptydiamond Terraform}
+\vspace{4pt}
+\textbf{Infrastructure}\\
+{\small \emptydiamond Docker \emptydiamond Kubernetes \emptydiamond KEDA }
+\vspace{4pt}
+\textbf{AI \& LLM}\\
+{\small \emptydiamond AI Agent Dev \emptydiamond RAG
+\emptydiamond Prompt Engineering \\ \emptydiamond LangChain \emptydiamond Multi-Agent Orchestration}
+\vspace{4pt}
+\textbf{Frameworks}\\
+{\small \emptydiamond FastAPI \emptydiamond Flask \emptydiamond Node.js \emptydiamond Express.js \\
+\emptydiamond Spring \emptydiamond React \emptydiamond tRPC}
+\vspace{4pt}
+\textbf{DB}\\
+{\small \emptydiamond PostgreSQL \emptydiamond MySQL \emptydiamond Redis \emptydiamond ChromaDB \\
+\emptydiamond MongoDB }
+\vspace{4pt}
+\textbf{Methods}\\
+{\small \emptydiamond CI/CD \emptydiamond Agile \emptydiamond Unit Testing \emptydiamond Microservices}
+\vspace{4pt}
+\textbf{Miscellaneous}\\
+{\small \emptydiamond Elasticsearch \emptydiamond Fluent-bit \emptydiamond SD-WAN \emptydiamond TCP/IP \emptydiamond REST \emptydiamond Network Security}
+\vspace{6pt}
+% ── LANGUAGES ────────────────────────────────────────────────────────────────
+\section{Languages}
+{\small \emptydiamond English (C2) \emptydiamond Spanish (A1)}
+\vspace{6pt}
+% ── CERTIFICATIONS ────────────────────────────────────────────────────────────
+\section{Certifications}
+\textbf{Retrieval Augmented Generation (RAG)}\\
+{\footnotesize\color{darkgray} April 2026 – Present}
+
+\vspace{4pt}
+\textbf{\href{https://learn.deeplearning.ai/accomplishments/91da3d54-b8aa-421c-b26a-344e703662da}{Claude Code: An Agentic Coding Assistant}}\\
+{\footnotesize\color{darkgray} May 2026}
+
+\vspace{4pt}
+\textbf{\href{https://www.coursera.org/account/accomplishments/verify/0CDH2M6QXYVZ}{AWS Storage}}\\
+{\footnotesize\color{darkgray} June 2025}
+\vspace{6pt}
+%% ═══════════════════════════
+%%  RIGHT COLUMN
+%% ═══════════════════════════
+\switchcolumn
+% ── EXPERIENCE ───────────────────────────────────────────────────────────────
+\section{Experience}
+\entry{AI Engineer (Contract)}{Novo Nordisk}{Sep 2026 – Present}{Remote}
+\begin{itemize}
+  \item Building a \textbf{research-agent} chat platform for medical and internal market research, saving verified files to \textbf{SharePoint}.
+  \item Built a dynamic document index on \textbf{Qdrant} with metadata filtering and \textbf{hybrid retrieval}, powering an insights dashboard.
+  \item Shipped a dashboard chatbot combining \textbf{live web search} with the internal index, answering each query in \textbf{under 30 seconds} with verified links or internal document paths.
+\end{itemize}
+\vspace{1pt}
+\entry{Founder \& Solo Engineer}{Bellance OS (Salon Intelligence Platform)}{Jul 2026 – Sep 2026}{Remote}
+\begin{itemize}
+  \item Built a multi-tenant salon intelligence platform solo: \textbf{TypeScript} monorepo (tRPC API, WhatsApp rail, POS, \textbf{React} PWA) over a two-store \textbf{PostgreSQL} architecture, shipped to a pilot outlet with \textbf{$\sim$2,100 CI-gated tests}.
+  \item Designed a per-outlet \textbf{service-relationship graph} that learns co-purchase and adoption patterns from billing history, surfacing only pairings with \textbf{proven lift} as owner-approved recommendations.
+  \item Tracked each recommendation's revenue impact in an \textbf{append-only ledger}; quantified \textbf{INR 330K+} recoverable leakage from 4 months of real salon data.
+\end{itemize}
+\vspace{1pt}
+\entry{Founding Engineer}{Knowl}{Nov 2025 – Jan 2026}{Bengaluru, India}
+\begin{itemize}
+  \item Designed Python/FastAPI backend services handling \textbf{1M+ API requests/day}, deployed on AWS EC2 and GKE (hybrid cloud).
+  \item Built an AI agent inferring users' preferred language from names via LLM reasoning and multi-strategy fallbacks, \textbf{improving prediction accuracy by 45\%}.
+  \item Implemented Redis-based rate limiting and throttling for high-volume APIs ensuring stability under P95 loads.
+\end{itemize}
+\vspace{1pt}
+\entry{Member of Technical Staff 2}{VMware - Arista (Velocloud SD-WAN)}{Jul 2021 – Oct 2025}{Bengaluru, India}
+\begin{itemize}
+  \item Built a network interface tracking system giving real-time statistics for \textbf{200K+ edge devices} via kernel data extraction and dashboards.
+  \item Delivered Advanced Threat Protection (ATP) with IDS/IPS, threat intelligence, and URL filtering, mitigating \textbf{10K+ monthly malicious connection attempts}.
+  \item Designed and implemented IPv6 DHCP Prefix Delegation for dynamic prefix allocation across large SD-WAN deployments with zero-NAT global addressing.
+  \item Led introduction of a unit testing framework for legacy C code, scaling coverage from \textbf{5\% to 90\%} and enabling full CI automation.
+\end{itemize}
+\vspace{1pt}
+% ── PROJECTS ─────────────────────────────────────────────────────────────────
+\section{Projects}
+\projentry{\href{https://document-podcast.onrender.com/}{Document Podcast}}{May 2026 – Jun 2026}
+{
+\begin{itemize} \vspace{-4pt}
+\item \small Turned scientific documents into natural \textbf{two-speaker podcasts} in English and Danish (Python, \textbf{FastAPI}, \textbf{OpenAI}, \textbf{Cartesia TTS}).
+\item \small Kept long-form dialogue consistent through staged script generation, repetition checks, and voice continuity across audio chunks.
+\end{itemize}
+}
+\end{paracol}
+\end{document}
