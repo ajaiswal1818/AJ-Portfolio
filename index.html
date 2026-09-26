@@ -203,6 +203,54 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
   .ledger tr:nth-child(4){display:none}
   .big{bottom:12px}
 }
+
+/* ---------- Clickable cards + drawer ---------- */
+[data-case]{cursor:pointer}
+.shot[data-case] .frame{position:relative}
+.open-hint{position:absolute;right:16px;top:14px;z-index:2;font-size:12px;font-weight:500;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 11px;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.shot[data-case]:hover .open-hint,.shot[data-case]:focus-visible .open-hint{opacity:1;transform:none}
+.shot[data-case]:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:18px}
+.cap .more{float:right;font-style:normal;color:var(--ink);font-size:12px;margin-left:12px}
+button.row{width:100%;background:none;border:0;border-bottom:1px solid var(--line);font:inherit;cursor:pointer;text-align:left;color:inherit}
+button.row span:first-child::after{content:"↗";font-size:11px;color:var(--faint);margin-left:6px;transition:color .2s}
+button.row:hover span:first-child::after{color:var(--ink)}
+button.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
+.drawer{position:fixed;inset:0;z-index:60}
+.drawer[hidden]{display:none}
+.scrim{position:absolute;inset:0;background:rgba(10,11,13,.32);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .3s}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(620px,100%);background:var(--bg);box-shadow:-30px 0 60px -30px rgba(0,0,0,.35);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s cubic-bezier(.2,.7,.2,1);outline:none}
+.drawer.open .scrim{opacity:1}.drawer.open .panel{transform:none}
+.panel-top{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.x{width:32px;height:32px;border-radius:50%;border:0;background:var(--pill);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.panel-body{flex:1;overflow-y:auto;padding:30px 28px 40px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.panel-nav{display:flex;justify-content:space-between;gap:8px;padding:14px 28px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.panel-nav .btn{border:0;cursor:pointer;font-family:inherit}
+.c-meta{font-size:12.5px;color:var(--muted)}
+.c-title{font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-top:10px}
+.c-lede{margin-top:12px;font-size:15px;color:var(--ink-2);line-height:1.6}
+.c-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:22px 0 6px}
+.c-stats div{background:var(--card);border:1px solid var(--card-line);border-radius:12px;padding:12px 14px}
+.c-stats b{display:block;font-size:20px;font-weight:500;letter-spacing:-.02em}
+.c-stats span{font-size:12px;color:var(--muted)}
+.panel-body h3{font-size:14px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+.panel-body p{font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.c-steps,.c-notes{padding-left:0;list-style:none;display:grid;gap:10px}
+.c-steps{counter-reset:s}
+.c-steps li,.c-notes li{position:relative;padding-left:30px;font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.c-steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:2px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent)}
+.c-notes li::before{content:"";position:absolute;left:6px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--faint)}
+.c-steps b,.c-notes b{color:var(--ink);font-weight:500}
+.c-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.c-tags span{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--pill);border-radius:6px;padding:4px 8px;color:var(--ink-2)}
+.c-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+body.locked{overflow:hidden}
+@media (max-width:640px){
+  .panel{top:auto;height:92dvh;width:100%;border-radius:18px 18px 0 0;transform:translateY(100%)}
+  .panel-top,.panel-body,.panel-nav{padding-left:18px;padding-right:18px}
+  .c-title{font-size:22px}
+  .open-hint{opacity:1;transform:none}
+}
+@media (hover:none){.open-hint{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -219,8 +267,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     <h1>I build the systems you never see <em>working</em>.</h1>
 
     <p class="now">
-      Currently AI Engineer (contract) at <a href="https://www.novonordisk.com" target="_blank" rel="noopener">Novo Nordisk</a>.<br>
-      Previously at <a href="#bellance">Bellance OS</a>, <a href="#knowl">Knowl</a>, and <a href="#vmware">VMware</a>.
+      Currently AI Engineer (contract) at <a href="#/novo">Novo Nordisk</a>.<br>
+      Previously at <a href="#/bellance">Bellance OS</a>, <a href="#/knowl">Knowl</a>, and <a href="#/vmware">VMware</a>.
     </p>
 
     <div class="bio">
@@ -240,18 +288,19 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </div>
 
     <div class="list">
-      <h2>Experiences</h2>
-      <div class="row"><span>Novo Nordisk</span><span>AI Engineer (contract) / 2026 – now</span></div>
-      <div class="row"><span>Bellance OS</span><span>Founder &amp; solo engineer / 2026</span></div>
-      <div class="row"><span>Knowl</span><span>Founding Engineer / 2025 – 2026</span></div>
-      <div class="row"><span>VMware · Arista</span><span>MTS 2, VeloCloud SD-WAN / 2021 – 2025</span></div>
-      <div class="row"><span>IIT Guwahati</span><span>B.Tech, Computer Science / 2017 – 2021</span></div>
+      <h2>Experiences <small style="font-weight:400;color:var(--muted);font-size:12px">· tap for details</small></h2>
+      <button type="button" class="row" data-case="novo"><span>Novo Nordisk</span><span>AI Engineer (contract) / 2026 – now</span></button>
+      <button type="button" class="row" data-case="bellance"><span>Bellance OS</span><span>Founder &amp; solo engineer / 2026</span></button>
+      <button type="button" class="row" data-case="knowl"><span>Knowl</span><span>Founding Engineer / 2025 – 2026</span></button>
+      <button type="button" class="row" data-case="vmware"><span>VMware · Arista</span><span>MTS 2, VeloCloud SD-WAN / 2021 – 2025</span></button>
+      <button type="button" class="row" data-case="ushur"><span>Ushur</span><span>Software Developer Intern / 2019 – 2020</span></button>
+      <button type="button" class="row" data-case="iit"><span>IIT Guwahati</span><span>B.Tech, Computer Science / 2017 – 2021</span></button>
     </div>
 
     <div class="list">
       <details>
         <summary>Side projects <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></summary>
-        <a class="row" href="https://document-podcast.onrender.com/" target="_blank" rel="noopener"><span>Document Podcast</span><span>Papers to two-voice podcasts / 2026</span></a>
+        <button type="button" class="row" data-case="podcast"><span>Document Podcast</span><span>Papers to two-voice podcasts / 2026</span></button>
         <a class="row" href="https://github.com/ajaiswal1818" target="_blank" rel="noopener"><span>pytest-tenantguard</span><span>Cross-tenant leak linter / building</span></a>
         <a class="row" href="https://github.com/ajaiswal1818/InterviewHelp" target="_blank" rel="noopener"><span>Interview Helper</span><span>Local RAG, Ollama + ChromaDB</span></a>
         <a class="row" href="https://github.com/ajaiswal1818" target="_blank" rel="noopener"><span>Librarian</span><span>Multi-book chat with citations</span></a>
@@ -277,8 +326,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
   <section class="work" aria-label="Selected work">
 
     <!-- Novo Nordisk -->
-    <figure class="shot reveal" id="novo">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" id="novo" data-case="novo" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read case study →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">research-hub / ecosystem</b></div>
         <div class="pane">
           <div class="flow">
@@ -294,8 +343,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </figure>
 
     <!-- Bellance graph -->
-    <figure class="shot reveal" id="bellance">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" id="bellance" data-case="bellance" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read case study →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">bellance / outlet-graph</b></div>
         <div class="pane graph">
           <svg viewBox="0 0 520 280" aria-label="Service relationship graph">
@@ -321,8 +370,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </figure>
 
     <!-- Bellance ledger -->
-    <figure class="shot reveal">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" data-case="bellance" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read case study →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">bellance / intervention-ledger</b></div>
         <div class="pane">
           <table class="ledger mono">
@@ -349,8 +398,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </figure>
 
     <!-- Knowl -->
-    <figure class="shot reveal" id="knowl">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" id="knowl" data-case="knowl" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read case study →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">knowl / request-path</b></div>
         <div class="pane">
           <div class="lanes mono">
@@ -365,8 +414,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </figure>
 
     <!-- VMware -->
-    <figure class="shot reveal" id="vmware">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" id="vmware" data-case="vmware" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read case study →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">velocloud / fleet-telemetry</b></div>
         <div class="fleet"><canvas id="fleet"></canvas>
           <div class="over mono"><b>200,000+</b><span>edge devices · live interface state</span></div>
@@ -376,8 +425,8 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
     </figure>
 
     <!-- Document Podcast -->
-    <a class="shot reveal" href="https://document-podcast.onrender.com/" target="_blank" rel="noopener">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" data-case="podcast" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read more →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">document-podcast.onrender.com</b></div>
         <div class="pane">
           <div class="pod">
@@ -387,12 +436,12 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
           </div>
         </div>
       </div></div>
-      <figcaption class="cap">document podcast<span>papers into two-voice podcasts</span><em>visit ↗</em></figcaption>
-    </a>
+      <figcaption class="cap">document podcast<span>papers into two-voice podcasts</span><em>2026</em></figcaption>
+    </figure>
 
     <!-- Bench -->
-    <figure class="shot reveal">
-      <div class="frame"><div class="screen">
+    <figure class="shot reveal" data-case="bench" tabindex="0" role="button" aria-haspopup="dialog">
+      <div class="frame"><span class="open-hint">Read the note →</span><div class="screen">
         <div class="chrome"><i></i><i></i><i></i><b class="mono">notes / qwen3.5-4b on mac mini</b></div>
         <div class="pane">
           <div class="bench mono">
@@ -407,6 +456,160 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
 
   </section>
 </main>
+
+
+<!-- ================= Case studies (opened in the drawer) ================= -->
+<template id="case-novo">
+  <p class="c-meta">AI Engineer (contract) · Novo Nordisk · Sep 2026 – present · Remote</p>
+  <h2 class="c-title">A research ecosystem that answers with receipts</h2>
+  <p class="c-lede">An end-to-end system for market researchers: an agent to do the research, a governed store for what gets verified, an index over that store, and a dashboard with a chatbot that answers from the web and from internal documents in under 30 seconds.</p>
+  <div class="c-stats"><div><b>&lt; 30s</b><span>per curated answer</span></div><div><b>Web + internal</b><span>searched on every query</span></div><div><b>Cited</b><span>verified link or internal path</span></div></div>
+  <h3>The problem</h3>
+  <p>Market researchers work across public medical literature and internal research. Answers are only useful if a researcher can trace them back to a source, whether that's a public paper or an internal document.</p>
+  <h3>What I'm building</h3>
+  <ol class="c-steps">
+    <li><b>Research agent.</b> A chat platform where researchers run medical research and work through internal material with an agent.</li>
+    <li><b>Verified store.</b> Files a researcher has checked are saved to SharePoint, so only reviewed material flows downstream.</li>
+    <li><b>Dynamic document index.</b> A Qdrant index built over that collection, with metadata filtering and a hybrid retrieval approach, updated as the collection grows.</li>
+    <li><b>Dashboard.</b> Built on the information in the verified collection.</li>
+    <li><b>Dashboard chatbot.</b> Runs a live internet search and a search over the internal index, then curates one answer per query within 30 seconds, with verified links or paths to internal documents.</li>
+  </ol>
+  <h3>Design principles</h3>
+  <ul class="c-notes">
+    <li><b>Verification is the gate, not an afterthought.</b> Only files a researcher has verified are indexed, so the chatbot's internal answers inherit that trust.</li>
+    <li><b>Hybrid retrieval with metadata filters.</b> Scientific and internal documents mix exact terms with conceptual questions, so a single retrieval mode leaves gaps; filters keep results scoped.</li>
+    <li><b>Citations are mandatory.</b> Every answer points to a URL or an internal path, so a researcher can check it in one click.</li>
+  </ul>
+  <div class="c-tags"><span>AI agents</span><span>RAG</span><span>Qdrant</span><span>Hybrid retrieval</span><span>SharePoint</span><span>Live web search</span></div>
+</template>
+
+<template id="case-bellance">
+  <p class="c-meta">Founder &amp; solo engineer · Bellance OS · Jul – Sep 2026 · Remote</p>
+  <h2 class="c-title">A salon intelligence platform that proves its own value</h2>
+  <p class="c-lede">A multi-tenant platform for salons that learns which services go together at each outlet, recommends only what has worked before, and records the revenue each recommendation actually produced. Built and shipped solo to a pilot outlet.</p>
+  <div class="c-stats"><div><b>~2,100</b><span>CI-gated tests</span></div><div><b>₹330K+</b><span>recoverable leakage found</span></div><div><b>4 months</b><span>of real salon data analysed</span></div></div>
+  <h3>The problem</h3>
+  <p>Salons leak revenue they can't see. Generic "customers also bought" advice doesn't hold across outlets, and owners won't act on suggestions they can't see paying off.</p>
+  <h3>What I built</h3>
+  <ol class="c-steps">
+    <li><b>Platform.</b> A TypeScript monorepo with a tRPC API, recommendation engine, WhatsApp rail, POS and a React PWA, over a two-store PostgreSQL architecture, on containerized staging.</li>
+    <li><b>Service-relationship graph.</b> Built per outlet from billing history, learning co-purchase and adoption patterns, and surfacing only pairings with historically proven lift.</li>
+    <li><b>Owner approval.</b> Recommendations go to the owner first; nothing reaches a client without their sign-off.</li>
+    <li><b>Intervention-outcome ledger.</b> An append-only ledger that attributes measured revenue to every recommendation.</li>
+  </ol>
+  <h3>Design principles</h3>
+  <ul class="c-notes">
+    <li><b>Per-outlet, not global.</b> Each salon's clientele is different, so the graph is learned per outlet.</li>
+    <li><b>Proven lift only.</b> A pairing has to have worked historically before it's suggested, which keeps recommendations few and credible.</li>
+    <li><b>Append-only ledger.</b> Outcomes are recorded, never edited, so the revenue story can be audited.</li>
+    <li><b>Adversarial AI workflow.</b> I built and audited the codebase with a multi-agent setup: an architect, an adversarial challenger and a security auditor.</li>
+  </ul>
+  <div class="c-tags"><span>TypeScript</span><span>tRPC</span><span>React PWA</span><span>PostgreSQL</span><span>Multi-tenant</span><span>Recommendation engine</span><span>WhatsApp</span></div>
+</template>
+
+<template id="case-knowl">
+  <p class="c-meta">Founding Engineer · Knowl · Nov 2025 – Jan 2026 · Bengaluru</p>
+  <h2 class="c-title">An AI-native backend at a million requests a day</h2>
+  <p class="c-lede">As founding engineer I owned the whole path: what the API promised, where it ran, and what happened when a model call was slow, wrong, or down.</p>
+  <div class="c-stats"><div><b>1M+</b><span>API requests / day</span></div><div><b>+45%</b><span>detection accuracy</span></div><div><b>EC2 + GKE</b><span>hybrid cloud</span></div></div>
+  <h3>Contracts first</h3>
+  <p>A FastAPI gateway with Pydantic-validated contracts at the edge of every service, across a reactive microservice architecture on hybrid AWS EC2 and GKE. Validating at the boundary means a malformed request dies in microseconds instead of surfacing as a confusing model output four services later.</p>
+  <h3>Holding the line under load</h3>
+  <p>Redis-backed rate limiting and throttling in front of the expensive paths, tuned against P95 rather than averages, because the tail is what takes a service down.</p>
+  <h3>The agent that reasons, then falls back</h3>
+  <p>An autonomous agent that infers a user's preferred communication language from their name: LLM reasoning and demographic knowledge first, then a multi-strategy fallback ladder when confidence is low. Prompt engineering on the reasoning step lifted accuracy by 45%.</p>
+  <h3>Trade-offs</h3>
+  <ul class="c-notes">
+    <li><b>Two deployment stories.</b> Hybrid EC2 + GKE kept stateful services on predictable instances while bursty agent workers scaled on Kubernetes.</li>
+    <li><b>Visible, bounded failure.</b> Rejecting a request early beats degrading every request in flight.</li>
+    <li><b>Uncertain is fine, silently wrong is not.</b> LLM reasoning is slower and pricier than a classifier; it earns its place because the fallback ladder catches the low-confidence tail.</li>
+  </ul>
+  <div class="c-tags"><span>Python</span><span>FastAPI</span><span>Pydantic</span><span>Redis</span><span>AWS EC2</span><span>GKE</span><span>LLM agents</span></div>
+</template>
+
+<template id="case-vmware">
+  <p class="c-meta">Member of Technical Staff 2 · VMware / Arista, VeloCloud SD-WAN · Jul 2021 – Oct 2025 · Bengaluru</p>
+  <h2 class="c-title">Seeing 200,000 edge devices at once</h2>
+  <p class="c-lede">Four years building core features in C and C++ for a production SD-WAN platform used by enterprise customers at scale: appliances with limited memory, production C, and no tolerance for anything that slows packet forwarding.</p>
+  <div class="c-stats"><div><b>200K+</b><span>edge devices with live visibility</span></div><div><b>10K+</b><span>malicious attempts blocked / month</span></div><div><b>5 → 90%</b><span>legacy C test coverage</span></div></div>
+  <h3>Interface tracking, from the kernel up</h3>
+  <p>Comprehensive network interface tracking with real-time and historical statistics, extracting data directly from the kernel and exposing it in user-facing dashboards. Before this, support was guessing when a customer link degraded.</p>
+  <h3>Advanced Threat Protection</h3>
+  <p>Delivered ATP on VCE Edge devices using Webroot capabilities, integrating IDS/IPS, threat intelligence and URL filtering, mitigating 10,000+ malicious connection attempts a month.</p>
+  <h3>IPv6 DHCP Prefix Delegation</h3>
+  <p>Designed and implemented dynamic IPv6 prefix allocation for remote sites across large SD-WAN deployments, giving customers globally routable addressing with zero NAT.</p>
+  <h3>Latency visualisation</h3>
+  <p>A platform to measure and visualise packet-processing latency across internal functions, turning performance debugging from guesswork into a graph.</p>
+  <h3>Tests, and what they unlocked</h3>
+  <p>Led the introduction of a unit testing framework into legacy C code, taking coverage from 5% to 90% and enabling full CI automation. It meant months of refactoring code nobody wanted to touch, and it's what finally let CI gate a release.</p>
+  <div class="c-tags"><span>C</span><span>C++</span><span>Linux kernel</span><span>TCP/IP</span><span>IPv6</span><span>IDS/IPS</span><span>SD-WAN</span><span>CI</span></div>
+</template>
+
+<template id="case-podcast">
+  <p class="c-meta">Side project · May – Jun 2026</p>
+  <h2 class="c-title">Document Podcast: papers you can listen to</h2>
+  <p class="c-lede">Turns scientific documents into natural, two-speaker podcasts in English and Danish.</p>
+  <div class="c-stats"><div><b>2</b><span>speakers per episode</span></div><div><b>EN + DA</b><span>languages</span></div></div>
+  <h3>The hard part: long-form consistency</h3>
+  <p>Short dialogues are easy; a long conversation drifts, repeats itself and can change voice between audio chunks. I tackled it with staged script generation, repetition checks, and voice continuity across audio chunks.</p>
+  <h3>Stack</h3>
+  <p>Python and FastAPI, OpenAI for the script, and Cartesia for text-to-speech. An earlier local-first version ran entirely on Apple Silicon with MLX inference (Qwen3 4B), scholarly retrieval, an LLM quality gate and Kokoro TTS.</p>
+  <div class="c-tags"><span>Python</span><span>FastAPI</span><span>OpenAI</span><span>Cartesia TTS</span><span>MLX</span></div>
+  <p class="c-links"><a class="btn dark" href="https://document-podcast.onrender.com/" target="_blank" rel="noopener">Try it live ↗</a></p>
+</template>
+
+<template id="case-bench">
+  <p class="c-meta">Field notes · Local AI</p>
+  <h2 class="c-title">Local AI's real bottleneck is memory</h2>
+  <p class="c-lede">I benchmarked the same coding prompt on Qwen3.5 4B and 9B models on a 16GB Mac Mini, with and without Apple's MLX backend.</p>
+  <div class="c-stats"><div><b>13.13</b><span>tok/s without MLX</span></div><div><b>27.71</b><span>tok/s with MLX</span></div><div><b>~2.1×</b><span>faster, 4m39s → 1m43s</span></div></div>
+  <h3>What I found</h3>
+  <p>Runtime optimisation mattered nearly as much as model size. And as a project grew, generation slowed and the model lost track of earlier context. The cause wasn't the model, it was the KV cache eating memory as context filled. A smaller model with headroom can beat a bigger one on real work.</p>
+  <p class="c-links">
+    <a class="btn" href="https://www.linkedin.com/posts/abhijaiswal18_ai-llm-ollama-ugcPost-7466018590115262464-5kxm/" target="_blank" rel="noopener">Benchmark post ↗</a>
+    <a class="btn" href="https://www.linkedin.com/posts/abhijaiswal18_ai-localai-llm-share-7475772170476879873-HkCK/" target="_blank" rel="noopener">Memory essay ↗</a>
+  </p>
+</template>
+
+<template id="case-ushur">
+  <p class="c-meta">Software Developer Intern · Ushur · Dec 2019, May – Jun 2020 · Bengaluru</p>
+  <h2 class="c-title">Tracing and tooling for microservices</h2>
+  <p class="c-lede">Two internship stints on developer tooling for a microservice platform.</p>
+  <h3>Distributed tracing agent (Dec 2019)</h3>
+  <p>A Java-based agent that traces the whole chain of events in complex interactions between microservices. It used Javassist for bytecode manipulation and was integrated with Jaeger to show call flows visually.</p>
+  <h3>Dynamic bean injection API (May – Jun 2020)</h3>
+  <p>A RESTful Spring Boot API that injects beans matching the class name given in the payload, integrated with the ELK stack for centralised logging to help identify problems in the application.</p>
+  <div class="c-tags"><span>Java</span><span>Spring Boot</span><span>Javassist</span><span>Jaeger</span><span>ELK</span></div>
+</template>
+
+<template id="case-iit">
+  <p class="c-meta">B.Tech, Computer Science &amp; Engineering · 2017 – 2021</p>
+  <h2 class="c-title">IIT Guwahati</h2>
+  <p class="c-lede">Computer Science at IIT Guwahati, and competitive programming I still keep sharp.</p>
+  <div class="c-stats"><div><b>Expert</b><span>Codeforces</span></div><div><b>4★</b><span>CodeChef</span></div></div>
+  <p class="c-links">
+    <a class="btn" href="https://codeforces.com/profile/jaiswal_abhi" target="_blank" rel="noopener">Codeforces ↗</a>
+    <a class="btn" href="https://www.codechef.com/users/abhi_18101999" target="_blank" rel="noopener">CodeChef ↗</a>
+    <a class="btn" href="https://leetcode.com/u/ajaiswal9043/" target="_blank" rel="noopener">LeetCode ↗</a>
+  </p>
+</template>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+  <div class="scrim" data-close></div>
+  <article class="panel" tabindex="-1">
+    <header class="panel-top">
+      <span class="mono" id="drawer-title">case study</span>
+      <button class="x" type="button" data-close aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+    <div class="panel-body" id="drawer-body"></div>
+    <footer class="panel-nav">
+      <button type="button" class="btn" id="prev">← Previous</button>
+      <button type="button" class="btn" id="next">Next →</button>
+    </footer>
+  </article>
+</div>
 
 <!-- The small man, walking my timeline as you scroll -->
 <div class="walkbar" aria-hidden="true">
@@ -469,6 +672,52 @@ a.row:hover span:first-child{text-decoration:underline;text-underline-offset:3px
   addEventListener("resize",stick);
   [].forEach.call(document.querySelectorAll(".side details"),function(d){d.addEventListener("toggle",stick);});
   stick();
+
+
+  /* Case study drawer */
+  var ORDER=["novo","bellance","knowl","vmware","podcast","bench","ushur","iit"];
+  var TITLES={novo:"novo nordisk",bellance:"bellance os",knowl:"knowl",vmware:"vmware · arista",podcast:"document podcast",bench:"field notes",ushur:"ushur",iit:"education"};
+  var drawer=document.getElementById("drawer"),body=document.getElementById("drawer-body"),panel=drawer.querySelector(".panel"),dTitle=document.getElementById("drawer-title");
+  var current=null,lastFocus=null;
+  function render(id){
+    var t=document.getElementById("case-"+id); if(!t) return false;
+    body.innerHTML="";body.appendChild(t.content.cloneNode(true));body.scrollTop=0;
+    dTitle.textContent=TITLES[id]||"case study";current=id;return true;
+  }
+  function openCase(id,push){
+    if(!render(id)) return;
+    if(drawer.hidden){lastFocus=document.activeElement;drawer.hidden=false;document.body.classList.add("locked");
+      requestAnimationFrame(function(){requestAnimationFrame(function(){drawer.classList.add("open");panel.focus();});});}
+    if(push!==false && location.hash!=="#/"+id) history.pushState(null,"","#/"+id);
+  }
+  function closeCase(push){
+    if(drawer.hidden) return;
+    drawer.classList.remove("open");document.body.classList.remove("locked");
+    setTimeout(function(){drawer.hidden=true;body.innerHTML="";},380);
+    if(push!==false && location.hash.indexOf("#/")===0) history.pushState(null,"",location.pathname+location.search);
+    current=null; if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
+  }
+  function step(d){var i=ORDER.indexOf(current);if(i<0)return;openCase(ORDER[(i+d+ORDER.length)%ORDER.length]);}
+  document.addEventListener("click",function(e){
+    var c=e.target.closest("[data-close]"); if(c){closeCase();return;}
+    var t=e.target.closest("[data-case]"); if(t && !drawer.contains(t)){e.preventDefault();openCase(t.getAttribute("data-case"));}
+  });
+  document.addEventListener("keydown",function(e){
+    if(!drawer.hidden){
+      if(e.key==="Escape"){closeCase();}
+      else if(e.key==="ArrowRight"){step(1);} else if(e.key==="ArrowLeft"){step(-1);}
+      else if(e.key==="Tab"){var f=panel.querySelectorAll("a[href],button");if(!f.length)return;var a=f[0],z=f[f.length-1];
+        if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+      return;
+    }
+    var t=e.target.closest&&e.target.closest("[data-case]");
+    if(t&&(e.key==="Enter"||e.key===" ")&&t.tagName!=="BUTTON"){e.preventDefault();openCase(t.getAttribute("data-case"));}
+  });
+  document.getElementById("prev").addEventListener("click",function(){step(-1);});
+  document.getElementById("next").addEventListener("click",function(){step(1);});
+  function fromHash(){var m=location.hash.match(/^#\/([a-z]+)/);if(m&&ORDER.indexOf(m[1])>-1)openCase(m[1],false);else closeCase(false);}
+  addEventListener("popstate",fromHash);
+  fromHash();
 
   /* Barcelona clock */
   var clock=document.getElementById("clock");
